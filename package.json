@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/raulzc3/tetris_backend#readme",
   "dependencies": {
-    "koa": "^2.15.2"
+    "koa": "^2.15.2",
+    "koa-body": "^6.0.1",
+    "koa-router": "^12.0.1",
+    "nodemon": "^3.1.0",
+    "sqlite3": "^5.1.7"
   }
 }
