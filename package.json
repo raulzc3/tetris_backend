@@ -1,0 +1,22 @@
+{
+  "name": "tetris_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raulzc3/tetris_backend.git"
+  },
+  "author": "",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "bugs": {
+    "url": "https://github.com/raulzc3/tetris_backend/issues"
+  },
+  "homepage": "https://github.com/raulzc3/tetris_backend#readme",
+  "dependencies": {
+    "koa": "^2.15.2"
+  }
+}
