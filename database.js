@@ -1,40 +1,30 @@
 const sqlite = require("sqlite3");
 
-let sql = "";
-
 const handleError = (error) => {
   if (error) {
+    console.log("Error connecting to database:");
     console.error(error);
-    throw error;
   }
 };
+//Database connection methods:
 
-const db = new sqlite.Database(
-  "./tetrisData.db",
-  sqlite.OPEN_READWRITE,
-  handleError
-);
+const connectToDBReadOnly = () =>
+  new sqlite.Database("./tetrisData.db", sqlite.OPEN_READONLY, handleError);
 
-// Create db if not exists
-sql = `CREATE TABLE IF NOT EXISTS scores (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name CHAR(3) NOT NULL,
-    score INTEGER NOT NULL
-)`;
+const connectToDBReadWrite = () =>
+  new sqlite.Database("./tetrisData.db", sqlite.OPEN_READWRITE, handleError);
 
-db.run(sql, handleError);
-
-function insertData(values = []) {
-  if (values.length > 0) {
-    sql = `INSERT INTO scores (name, score) VALUES (?, ?)`;
-    db.run(sql, values, handleError);
-    return true;
-  }
-}
-
+/**
+ * Get data from database
+ * @param {String} queryString
+ * @param {Array} params
+ * @returns
+ */
 const query = (queryString, params) => {
+  const connection = connectToDBReadOnly();
   return new Promise((resolve, reject) => {
-    db.all(queryString, params, (err, data) => {
+    connection.all(queryString, params, (err, data) => {
+      connection.close();
       if (err) {
         console.log("Error in query: ", queryString);
         console.error(err);
@@ -47,13 +37,4 @@ const query = (queryString, params) => {
   });
 };
 
-const findWithLimit = (limit) => {
-  sql = `SELECT name, score 
-            FROM scores 
-            ORDER BY score DESC
-            LIMIT ?`;
-
-  return query(sql, [limit]);
-};
-
-module.exports = { findWithLimit, insertData, query };
+module.exports = { connectToDBReadOnly, connectToDBReadWrite, query };

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/raulzc3/tetris_backend#readme",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "koa": "^2.15.2",
     "koa-body": "^6.0.1",
     "koa-router": "^12.0.1",

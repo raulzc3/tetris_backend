@@ -1,5 +1,4 @@
-// app.js
-
+require("dotenv").config();
 const Koa = require("koa");
 const { koaBody } = require("koa-body");
 
@@ -9,9 +8,11 @@ const app = new Koa();
 app.use(koaBody());
 
 // Require the routers
-let scores = require("./scores.js");
+const scores = require("./routes/scores");
 
 // use the routes
 app.use(scores.routes());
 
-app.listen(3000);
+app.listen(process.env.PORT, () => {
+  console.log(`Server running at http://localhost:${process.env.PORT}`);
+});
