@@ -8,6 +8,7 @@ const { query, connectToDBReadWrite } = require("../database");
 const getAllScoresFromDB = async (limit = 100) => {
   const sql = `SELECT * 
             FROM scores
+            ORDER BY score DESC
             LIMIT ?`;
 
   const allScores = await query(sql, [limit]);

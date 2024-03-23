@@ -1,10 +1,12 @@
 require("dotenv").config();
 const Koa = require("koa");
+const cors = require("@koa/cors");
 const { koaBody } = require("koa-body");
 
 const app = new Koa();
 
 // middleware
+app.use(cors());
 app.use(koaBody());
 
 // Require the routers

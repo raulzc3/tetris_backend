@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/raulzc3/tetris_backend#readme",
   "dependencies": {
+    "@koa/cors": "^5.0.0",
     "dotenv": "^16.4.5",
     "koa": "^2.15.2",
     "koa-body": "^6.0.1",
